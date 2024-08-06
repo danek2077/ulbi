@@ -1,0 +1,13 @@
+@import url("reset.scss");
+:root {
+  font-family: Consolas;
+}
+.app {
+  min-height: 100vh;
+}
+.app.dark {
+  background-color: #090949;
+}
+.app.ligth {
+  background-color: #e8e8ea;
+}
