@@ -1,19 +1,37 @@
 import { createRoot } from "react-dom/client";
-import { App } from "./components/App/App";
-import { BrowserRouter } from "react-router-dom";
+import { App } from "./app/App";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import React from "react";
-const root = document.getElementById("root");
+import { Home } from "./pages/home";
+const Counter = React.lazy(() =>
+  import("#src/pages/counter").then(({ Counter }) => ({
+    default: Counter,
+  }))
+);
 
-if (!root) {
-  throw new Error("root not found");
-}
+const router = createBrowserRouter([
+  {
+    element: <App />,
+    errorElement: <div>Error</div>,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/counter",
+        element: (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Counter />
+          </React.Suspense>
+        ),
+      },
+    ],
+  },
+]);
 
-const container = createRoot(root);
-
-container.render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
