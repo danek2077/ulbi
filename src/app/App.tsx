@@ -2,13 +2,15 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "../app/styles/index.scss";
 import { getStorageTheme } from "../features/theme";
-
-
+import { useSelector } from "react-redux";
+import { RootState } from "#src/shared/reduxTypes/reduxTypes";
 
 export const App: React.FC = () => {
-
+  const themeColor = useSelector(
+    (state: RootState) => state.themeSlice.themeColor
+  );
   return (
-    <div className={`app`}>
+    <div className={`app ${themeColor}`}>
       <div>
         <ul>
           <li>
@@ -17,7 +19,7 @@ export const App: React.FC = () => {
           <li>
             <Link to="/counter">counter</Link>
           </li>
-          <Outlet/>
+          <Outlet />
         </ul>
       </div>
     </div>
