@@ -2,7 +2,7 @@ import webpack from "webpack";
 import { slicePlugins } from "./config/slices/slicePlugins";
 import { paths } from "./config/slices/paths";
 import { sliceOutputEntry } from "./config/slices/sliceOutputEntry";
-import { sliceModuleRules } from "./config/slices/sliceModuleRules";
+import { sliceLoaders } from "./config/slices/sliceLoaders";
 import "webpack-dev-server";
 import { devToolMap } from "./config/slices/devToolMap";
 import { sliceDevServer } from "./config/slices/sliceDevServer";
@@ -15,10 +15,10 @@ const config: webpack.Configuration = {
   ...sliceOutputEntry(),
   plugins: slicePlugins(paths),
   module: {
-    rules: sliceModuleRules(mode),
+    rules: sliceLoaders(mode),
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", "scss", "css"],
+    extensions: [".tsx", ".ts", ".js", "scss", "css",'.svg'],
     alias: {
       "#src": paths.aliasSrcPath,
     },

@@ -4,6 +4,8 @@ import "../app/styles/index.scss";
 import { getStorageTheme } from "../features/theme";
 import { useSelector } from "react-redux";
 import { RootState } from "#src/shared/reduxTypes/reduxTypes";
+import LinkUi from "#src/shared/ui/link-button-router/LinkUi";
+import { NavBar } from "#src/widgets/NavBar";
 
 export const App: React.FC = () => {
   const themeColor = useSelector(
@@ -11,17 +13,8 @@ export const App: React.FC = () => {
   );
   return (
     <div className={`app ${themeColor}`}>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/counter">counter</Link>
-          </li>
-          <Outlet />
-        </ul>
-      </div>
+      <NavBar />
+      <Outlet />
     </div>
   );
 };

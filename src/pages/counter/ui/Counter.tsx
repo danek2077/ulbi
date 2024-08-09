@@ -8,7 +8,7 @@ export const Counter = () => {
   const counter = useSelector((state: RootState) => state.counterSlice.value);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="container">
       <button onClick={() => dispatch(incrementByAmount(counter))}>
         click
       </button>

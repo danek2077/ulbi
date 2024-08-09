@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_THEME_KEY, enumThemeColor } from "#src/features/theme";
+import { LOCAL_STORAGE_THEME_KEY } from "#src/features/theme";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
