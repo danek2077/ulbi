@@ -3,7 +3,8 @@ import webpack from "webpack";
 import { pathsType } from "./paths";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 export const slicePlugins = (
-  paths: pathsType
+  paths: pathsType,
+  mode: string
 ): webpack.WebpackPluginInstance[] => {
   return [
     new HtmlWebpackPlugin({
@@ -11,5 +12,8 @@ export const slicePlugins = (
     }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin(),
+    new webpack.DefinePlugin({
+      MODE:JSON.stringify(mode),
+    }),
   ];
 };

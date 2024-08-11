@@ -1,20 +1,25 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 import "../app/styles/index.scss";
-import { getStorageTheme } from "../features/theme";
 import { useSelector } from "react-redux";
 import { RootState } from "#src/shared/reduxTypes/reduxTypes";
-import LinkUi from "#src/shared/ui/link-button-router/LinkUi";
 import { NavBar } from "#src/widgets/NavBar";
+import { useTranslation } from "react-i18next";
+import i18n from "./i18n/i18n";
 
 export const App: React.FC = () => {
+  const { t } = useTranslation();
+
   const themeColor = useSelector(
     (state: RootState) => state.themeSlice.themeColor
   );
+
   return (
     <div className={`app ${themeColor}`}>
-      <NavBar />
-      <Outlet />
+      <Suspense fallback="loading...">
+        <NavBar />
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
